@@ -1,0 +1,1100 @@
+{
+ "model_id": "pm_f80a33bdf0",
+ "model_version": "0.1",
+ "nome": "Gestão de Ativos em Obras",
+ "one_liner": "Sistema web para controle diário de veículos alocados nas obras da empresa",
+ "gerado_em": "2026-09-16T13:59:49+00:00",
+ "completude_do_modelo": 96,
+ "blocos": [
+  {
+   "id": "auth",
+   "nome": "Autenticação",
+   "automatizavel": 5,
+   "evidencia": [
+    {
+     "secao": "actors",
+     "gatilho": "cadastr"
+    },
+    {
+     "secao": "domains",
+     "gatilho": "conta"
+    },
+    {
+     "secao": "entities",
+     "gatilho": "usuário"
+    },
+    {
+     "secao": "business_rules",
+     "gatilho": "cadastr"
+    },
+    {
+     "secao": "workflows",
+     "gatilho": "cadastr"
+    },
+    {
+     "secao": "permissions",
+     "gatilho": "cadastr"
+    },
+    {
+     "secao": "features",
+     "gatilho": "login"
+    },
+    {
+     "secao": "nfrs",
+     "gatilho": "usuário"
+    },
+    {
+     "secao": "constraints",
+     "gatilho": "login"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "crud",
+   "nome": "CRUD das entidades",
+   "automatizavel": 5,
+   "evidencia": [],
+   "exige_decisao": false
+  },
+  {
+   "id": "search",
+   "nome": "Busca",
+   "automatizavel": 5,
+   "evidencia": [
+    {
+     "secao": "constraints",
+     "gatilho": "filtro"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "upload",
+   "nome": "Upload de arquivos",
+   "automatizavel": 5,
+   "evidencia": [
+    {
+     "secao": "entities",
+     "gatilho": "arquivo"
+    },
+    {
+     "secao": "business_rules",
+     "gatilho": "arquivo"
+    },
+    {
+     "secao": "workflows",
+     "gatilho": "arquivo"
+    },
+    {
+     "secao": "constraints",
+     "gatilho": "arquivo"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "dashboard",
+   "nome": "Dashboard",
+   "automatizavel": 4,
+   "evidencia": [
+    {
+     "secao": "workflows",
+     "gatilho": "painel"
+    },
+    {
+     "secao": "features",
+     "gatilho": "painel"
+    },
+    {
+     "secao": "constraints",
+     "gatilho": "dashboard"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "jobs",
+   "nome": "Jobs em background",
+   "automatizavel": 4,
+   "evidencia": [
+    {
+     "secao": "problem",
+     "gatilho": "diariament"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "notificacoes",
+   "nome": "Notificações",
+   "automatizavel": 4,
+   "evidencia": [
+    {
+     "secao": "business_rules",
+     "gatilho": "alerta"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "rbac",
+   "nome": "Papéis e permissões (RBAC)",
+   "automatizavel": 4,
+   "evidencia": [
+    {
+     "secao": "problem",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "actors",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "business_rules",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "workflows",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "permissions",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "features",
+     "gatilho": "administrador"
+    },
+    {
+     "secao": "nfrs",
+     "gatilho": "administrador"
+    }
+   ],
+   "exige_decisao": false
+  },
+  {
+   "id": "billing",
+   "nome": "Cobrança / planos",
+   "automatizavel": 3,
+   "evidencia": [
+    {
+     "secao": "integrations",
+     "gatilho": "pagament"
+    }
+   ],
+   "exige_decisao": true
+  },
+  {
+   "id": "workflow",
+   "nome": "Workflow / máquina de estados",
+   "automatizavel": 3,
+   "evidencia": [
+    {
+     "secao": "problem",
+     "gatilho": "status"
+    },
+    {
+     "secao": "entities",
+     "gatilho": "status"
+    },
+    {
+     "secao": "business_rules",
+     "gatilho": "status"
+    },
+    {
+     "secao": "workflows",
+     "gatilho": "status"
+    },
+    {
+     "secao": "constraints",
+     "gatilho": "status"
+    }
+   ],
+   "exige_decisao": true
+  }
+ ],
+ "dados": [
+  {
+   "tabela": "ativo",
+   "nome": "Ativo (veículo)",
+   "campos": [
+    "identificação",
+    "status"
+   ]
+  },
+  {
+   "tabela": "obra",
+   "nome": "Obra (local)",
+   "campos": [
+    "nome",
+    "localização"
+   ]
+  },
+  {
+   "tabela": "usuario",
+   "nome": "Usuário",
+   "campos": [
+    "nome",
+    "perfil",
+    "obra vinculada"
+   ]
+  },
+  {
+   "tabela": "lancamento_diario",
+   "nome": "Lançamento diário",
+   "campos": [
+    "data",
+    "ativo",
+    "obra",
+    "status de uso",
+    "informações do dia",
+    "ativo (código)",
+    "descrição",
+    "tipo",
+    "fabricante",
+    "modelo",
+    "horímetro inicial",
+    "horímetro final",
+    "total horas",
+    "km inicial",
+    "km final",
+    "total km",
+    "descritivo de manutenção e outros",
+    "status",
+    "condição climática"
+   ]
+  },
+  {
+   "tabela": "arquivo_de_propriedade",
+   "nome": "Arquivo de propriedade (lista de ativos da empresa)",
+   "campos": [
+    "ativo",
+    "status"
+   ]
+  }
+ ],
+ "permissoes": [
+  {
+   "papel": "Usuário da obra",
+   "recurso": "Lançamento diário",
+   "acoes": [
+    "criar",
+    "ver (apenas da sua localidade)",
+    "editar",
+    "excluir",
+    "ver (apenas registros da sua obra)"
+   ]
+  },
+  {
+   "papel": "Administrador",
+   "recurso": "Todos os recursos",
+   "acoes": [
+    "criar",
+    "editar",
+    "ver tudo",
+    "gerenciar cadastros de ativos e usuários"
+   ]
+  },
+  {
+   "papel": "Administrador",
+   "recurso": "Todos os cadastros (ativos, usuários, obras)",
+   "acoes": [
+    "criar",
+    "editar",
+    "excluir",
+    "ver tudo"
+   ]
+  },
+  {
+   "papel": "Administrador",
+   "recurso": "Consolidação e gestão dos dados de todas as obras",
+   "acoes": [
+    "ver tudo",
+    "gerenciar"
+   ]
+  }
+ ],
+ "integracoes": [
+  {
+   "tipo": "pagamento",
+   "provedor": "não se aplica: o sistema não terá pagamentos"
+  }
+ ],
+ "regras": [
+  "quando um ativo cadastrado não estiver alocado em nenhuma obra no dia, então o sistema deve sinalizar isso ao administrador",
+  "quando o mesmo veículo for lançado em duas obras no mesmo dia, então o sistema deve detectar e alertar a duplicidade",
+  "quando um usuário de obra acessar os lançamentos, então só pode ver os registros da sua própria localidade",
+  "quando o sistema consolidar os registros diários, então deve comparar a lista de ativos da empresa (arquivo de propriedade) com os registros do dia e apontar as divergências (ativo lançado em duas obras no mesmo dia; ativo da lista que não está registrado em nenhuma obra)",
+  "quando a coluna \"Status\" do diário da obra estiver preenchida com O, D, P, C ou R, então o sistema considera o ativo como alocado na obra",
+  "quando houver item no diário que não consta no arquivo de propriedade, então o sistema deve incluir o item no arquivo de propriedade identificado com status L (Locado)",
+  "quando o usuário tentar salvar o registro diário, então o sistema só deve permitir se todos os campos estiverem preenchidos, exceto o campo \"Descritivo de Manutenção e Outros\", que não é obrigatório",
+  "quando o sistema for consolidar (comparar ativos da empresa com os dias lançados), então só deve processar dias menores ou iguais ao dia anterior (ex.: sendo hoje 15/09/2026, processa apenas de 01/09/2026 até 15/09/2026)",
+  "quando alguma obra não tiver efetuado o registro de um dia, então o sistema não pode processar esse dia (pois faltam informações para verificar a totalidade) e deve informar o usuário, identificando as obras sem lançamento"
+ ],
+ "padrao_pegada": {
+  "versao": "2.0",
+  "perfil": "saas_producao",
+  "total_regras": 71,
+  "obrigatorias": 55,
+  "regras": [
+   {
+    "id": "ARQ-01",
+    "categoria": "ARQ",
+    "titulo": "Stack do backend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Backend em Python + FastAPI + SQLAlchemy + Alembic."
+   },
+   {
+    "id": "ARQ-02",
+    "categoria": "ARQ",
+    "titulo": "Arquitetura Clean em camadas",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Arquitetura Clean com isolamento de domínio, aplicação, infraestrutura e API."
+   },
+   {
+    "id": "ARQ-03",
+    "categoria": "ARQ",
+    "titulo": "Injeção de dependência",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Injetar o serviço no controller e o banco no serviço — sem instanciar dependência dentro da regra de negócio."
+   },
+   {
+    "id": "ARQ-04",
+    "categoria": "ARQ",
+    "titulo": "Backend é o dono do negócio",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Toda regra de negócio, acesso a banco, autenticação e integração externa vive no backend. O frontend é apenas cliente da API."
+   },
+   {
+    "id": "ARQ-05",
+    "categoria": "ARQ",
+    "titulo": "Estrutura de diretórios canônica",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/Prompt.txt",
+    "regra": "backend/src/{domain,application,infrastructure,api}, frontend/src/{components,pages,hooks,services}, storage/ e docker/."
+   },
+   {
+    "id": "ARQ-06",
+    "categoria": "ARQ",
+    "titulo": "Stack do frontend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Frontend em React + Vite + Tailwind com TypeScript."
+   },
+   {
+    "id": "API-01",
+    "categoria": "API",
+    "titulo": "Base de API única",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Todas as rotas públicas sob uma base única, declarada em UM único lugar e consumida pelo frontend e pelo backend. Nunca declarar caminhos absolutos misturando com e sem o prefixo."
+   },
+   {
+    "id": "API-02",
+    "categoria": "API",
+    "titulo": "Health público",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/openspec/specs/generated-backend-health-endpoint",
+    "regra": "O health check (/api/health) responde sem credencial alguma e fica fora do grupo de rotas protegidas — Docker e infraestrutura o consultam antes de existir sessão."
+   },
+   {
+    "id": "API-03",
+    "categoria": "API",
+    "titulo": "CORS",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "CORS ergonômico em desenvolvimento local e restrito às origens explícitas do domínio real em produção. Nunca curinga combinado com credenciais."
+   },
+   {
+    "id": "API-04",
+    "categoria": "API",
+    "titulo": "Rotas privadas por padrão",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Toda rota de aplicação exige sessão válida (Authorization: Bearer). Sem exceção além do health e do fluxo de login."
+   },
+   {
+    "id": "API-05",
+    "categoria": "API",
+    "titulo": "Alinhamento de base no frontend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/generated-backend-health-endpoint",
+    "regra": "VITE_API_BASE_URL inclui o prefixo da API e os serviços acrescentam apenas o caminho relativo — nunca omitir o prefixo nem repeti-lo (…/api/api/…)."
+   },
+   {
+    "id": "API-06",
+    "categoria": "API",
+    "titulo": "Rate limit",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Login, cadastro, reset de senha e endpoints públicos têm rate limit; ao exceder, o backend responde 429."
+   },
+   {
+    "id": "API-07",
+    "categoria": "API",
+    "titulo": "Validação de payload",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Schemas de entrada validam tipo, tamanho e obrigatoriedade; payload inesperado é rejeitado antes de executar a regra de negócio."
+   },
+   {
+    "id": "AUTH-01",
+    "categoria": "AUTH",
+    "titulo": "Sessão logada sempre",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/public-api-security",
+    "regra": "O projeto nasce com login e cadastro. Nenhuma chave estática no navegador, nenhum cenário sem autenticação — o token é emitido pelo backend, curto e com escopo definido."
+   },
+   {
+    "id": "AUTH-02",
+    "categoria": "AUTH",
+    "titulo": "Senha com hash forte",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Senha armazenada apenas como hash bcrypt ou argon2 — nunca em texto nem com hash reversível."
+   },
+   {
+    "id": "AUTH-03",
+    "categoria": "AUTH",
+    "titulo": "Token com expiração",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/LoginConfig.md",
+    "regra": "Token de sessão com expiração explícita; padrão de 1 hora, configurável por ambiente."
+   },
+   {
+    "id": "AUTH-04",
+    "categoria": "AUTH",
+    "titulo": "Validação completa de sessão",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Antes de executar qualquer regra de negócio, o backend valida assinatura, expiração e se o usuário está ativo."
+   },
+   {
+    "id": "AUTH-05",
+    "categoria": "AUTH",
+    "titulo": "Tratamento de 401 no frontend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Resposta 401 provoca logout e limpeza de sessão no frontend, com redirecionamento para o login."
+   },
+   {
+    "id": "AUTH-06",
+    "categoria": "AUTH",
+    "titulo": "Modelo de usuário canônico",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/LoginConfig.md",
+    "regra": "User com id UUID, email único, password_hash, nome, ativo e timestamps de criação/atualização."
+   },
+   {
+    "id": "AUTH-07",
+    "categoria": "AUTH",
+    "titulo": "Rotas de autenticação canônicas",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/LoginConfig.md",
+    "regra": "POST /auth/register (409 se e-mail duplicado), POST /auth/token (access_token + token_type) e PUT /auth/password autenticada, exigindo confirmação da nova senha."
+   },
+   {
+    "id": "AUTH-08",
+    "categoria": "AUTH",
+    "titulo": "Sessão no frontend",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/LoginConfig.md",
+    "regra": "Páginas /login e /register, contexto de autenticação com login/logout/atualizar senha e rota privada que redireciona quem não está autenticado."
+   },
+   {
+    "id": "AUTH-09",
+    "categoria": "AUTH",
+    "titulo": "Segredo de assinatura só no backend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "O segredo que assina os tokens existe apenas no backend, é obrigatório em produção e nunca chega ao bundle do navegador."
+   },
+   {
+    "id": "SEG-01",
+    "categoria": "SEG",
+    "titulo": "Nenhum segredo no código",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Nenhum segredo, chave ou credencial hardcoded no código-fonte."
+   },
+   {
+    "id": "SEG-02",
+    "categoria": "SEG",
+    "titulo": "Nada sensível em variáveis públicas",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Variáveis do frontend carregam apenas configuração pública (URL base, idioma). Nunca segredo, chave, connection string ou token."
+   },
+   {
+    "id": "SEG-03",
+    "categoria": "SEG",
+    "titulo": "Credenciais só no backend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Connection string do banco, chaves de integração, credenciais de e-mail e tokens privados existem apenas no ambiente do backend."
+   },
+   {
+    "id": "SEG-04",
+    "categoria": "SEG",
+    "titulo": "Erro sem vazamento interno",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/onboarding-funnel",
+    "regra": "Mensagem de erro amigável ao usuário, sem stack trace, JSON cru, caminho de campo interno ou nome de validação do framework."
+   },
+   {
+    "id": "SEG-05",
+    "categoria": "SEG",
+    "titulo": "Log seguro",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Logs não contêm senha, token, connection string nem dado sensível; falhas de autenticação e rate limit são registradas com informação suficiente para auditoria."
+   },
+   {
+    "id": "SEG-06",
+    "categoria": "SEG",
+    "titulo": "Limite de upload",
+    "criticidade": "recomendada",
+    "condicao": "quando o projeto tem upload",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Upload valida tamanho máximo e tipos permitidos antes de gravar."
+   },
+   {
+    "id": "SEG-07",
+    "categoria": "SEG",
+    "titulo": "Verificação humana em ação sensível",
+    "criticidade": "recomendada",
+    "condicao": "quando exposto publicamente",
+    "verificacao": "manual",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Ações públicas sensíveis (cadastro, contato) consideram CAPTCHA/Turnstile quando o sistema está exposto."
+   },
+   {
+    "id": "SEG-08",
+    "categoria": "SEG",
+    "titulo": "Integração só pelo backend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SupabaseConfig.md",
+    "regra": "O frontend nunca usa SDK, anon key ou service_role de terceiros (Supabase, Firebase e afins). Integração externa passa exclusivamente pelo backend."
+   },
+   {
+    "id": "SEG-09",
+    "categoria": "SEG",
+    "titulo": "README sem segredo",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "O README lista as variáveis obrigatórias e como configurá-las, sem revelar nenhum valor real."
+   },
+   {
+    "id": "DADOS-01",
+    "categoria": "DADOS",
+    "titulo": "Identificadores são UUID",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Todo identificador de entidade é UUID — nunca sequencial exposto em rota (elimina acesso a registro alheio por troca do número na URL)."
+   },
+   {
+    "id": "DADOS-02",
+    "categoria": "DADOS",
+    "titulo": "Migrações versionadas",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Criação e alteração estrutural do banco sempre por migração Alembic, nunca alterando o esquema à mão."
+   },
+   {
+    "id": "DADOS-03",
+    "categoria": "DADOS",
+    "titulo": "Diretório do banco existe",
+    "criticidade": "obrigatoria",
+    "condicao": "banco em arquivo",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Antes de abrir a conexão ou rodar migração em banco de arquivo, garantir que o diretório pai existe."
+   },
+   {
+    "id": "DADOS-04",
+    "categoria": "DADOS",
+    "titulo": "Storage é artefato de runtime",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "A pasta de dados do runtime nunca é criada ou editada manualmente no código: é onde ficam os dados sensíveis do usuário."
+   },
+   {
+    "id": "DADOS-05",
+    "categoria": "DADOS",
+    "titulo": "Upload organizado por entidade",
+    "criticidade": "recomendada",
+    "condicao": "quando o projeto tem upload",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Arquivos enviados ficam em subpasta por identificador da entidade de origem."
+   },
+   {
+    "id": "DADOS-06",
+    "categoria": "DADOS",
+    "titulo": "Banco gerenciado via connection string",
+    "criticidade": "obrigatoria",
+    "condicao": "quando o banco é gerenciado",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/SupabaseConfig.md",
+    "regra": "Banco gerenciado é usado apenas como PostgreSQL via connection string (driver assíncrono), com SSL quando o provedor exigir; sem SDK do provedor."
+   },
+   {
+    "id": "DADOS-07",
+    "categoria": "DADOS",
+    "titulo": "Sem duplicidade de registro",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Existe teste garantindo que registros-chave não podem ser duplicados."
+   },
+   {
+    "id": "DADOS-08",
+    "categoria": "DADOS",
+    "titulo": "Migração roda em produção",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "As migrações executam com sucesso contra o banco de produção antes da entrega."
+   },
+   {
+    "id": "UI-01",
+    "categoria": "UI",
+    "titulo": "Responsivo de 360 px para cima",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "v1/openspec/specs/generated-project-responsive-ui",
+    "regra": "Todas as páginas, menus, formulários, tabelas, modais e ações principais continuam acessíveis e utilizáveis a partir de 360 px, preservando a funcionalidade da versão desktop."
+   },
+   {
+    "id": "UI-02",
+    "categoria": "UI",
+    "titulo": "Sem rolagem horizontal",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "v1/openspec/specs/generated-project-responsive-ui",
+    "regra": "Navegação, colunas e espaçamentos se adaptam à largura; componente largo usa tratamento contido, nunca rolagem horizontal da página."
+   },
+   {
+    "id": "UI-03",
+    "categoria": "UI",
+    "titulo": "Nada de alert/confirm",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Comunicação com o usuário via componente Modal do próprio design — nunca alert() ou confirm()."
+   },
+   {
+    "id": "UI-04",
+    "categoria": "UI",
+    "titulo": "Formato brasileiro de data e hora",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Datas e horas exibidas no formato brasileiro, respeitando o fuso do Brasil."
+   },
+   {
+    "id": "UI-05",
+    "categoria": "UI",
+    "titulo": "Formato brasileiro de números e moeda",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Números e valores monetários exibidos no padrão brasileiro."
+   },
+   {
+    "id": "UI-06",
+    "categoria": "UI",
+    "titulo": "Editor de markdown",
+    "criticidade": "recomendada",
+    "condicao": "quando há campo de descrição",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Campo de descrição oferece edição em markdown (negrito, títulos, listas), exibindo formatado e editando em texto puro."
+   },
+   {
+    "id": "UI-07",
+    "categoria": "UI",
+    "titulo": "Dashboard como página inicial",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "A página inicial autenticada é o dashboard, com menu lateral contendo as opções definidas nos requisitos visuais do projeto."
+   },
+   {
+    "id": "UI-08",
+    "categoria": "UI",
+    "titulo": "Sidebar só em área autenticada",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/onboarding-funnel",
+    "regra": "Menu lateral apenas em páginas internas/administrativas. Landing, login e fluxos de entrada não usam sidebar."
+   },
+   {
+    "id": "UI-09",
+    "categoria": "UI",
+    "titulo": "Tema visual conforme requisitos",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Cores, tipografia, modo (claro/escuro) e espaçamento seguem os requisitos visuais declarados no Product Model."
+   },
+   {
+    "id": "UI-10",
+    "categoria": "UI",
+    "titulo": "Config pública do frontend",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "O frontend recebe configuração apenas por variáveis públicas do Vite; nada de segredo."
+   },
+   {
+    "id": "INFRA-01",
+    "categoria": "INFRA",
+    "titulo": "Imagem própria por serviço",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "Dockerfile dedicado para backend e para frontend."
+   },
+   {
+    "id": "INFRA-02",
+    "categoria": "INFRA",
+    "titulo": "Compose sobe o ambiente completo",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "Um docker compose na raiz sobe backend, frontend e banco do zero, sem passo manual."
+   },
+   {
+    "id": "INFRA-03",
+    "categoria": "INFRA",
+    "titulo": "Storage em bind mount",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "Volume de storage compartilhado com o host por bind mount, usando a pasta do projeto como ponto de montagem."
+   },
+   {
+    "id": "INFRA-04",
+    "categoria": "INFRA",
+    "titulo": "Frontend espera a API estar saudável",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "O frontend só sobe depois do health check da API passar; a imagem do backend traz a ferramenta de checagem instalada."
+   },
+   {
+    "id": "INFRA-05",
+    "categoria": "INFRA",
+    "titulo": "Portas e URLs por ambiente",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "Portas e URLs vêm de variáveis de ambiente. O backend não usa a porta 80; o frontend usa porta alta."
+   },
+   {
+    "id": "INFRA-06",
+    "categoria": "INFRA",
+    "titulo": "Diretório de runtime preparado na imagem",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "A imagem do backend cria o diretório de dados antes de iniciar, sem gravar dado sensível dentro da imagem."
+   },
+   {
+    "id": "INFRA-07",
+    "categoria": "INFRA",
+    "titulo": "Frontend servido por servidor web",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/config/DockerConfig.md",
+    "regra": "Build do frontend servido por nginx em imagem multi-stage."
+   },
+   {
+    "id": "INFRA-08",
+    "categoria": "INFRA",
+    "titulo": "Pacote pronto para VPS",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "decisão 12/09",
+    "regra": "O pacote entregue é dockerizado e implantável em VPS alugada: compose, template de variáveis de ambiente e README de deploy, sem dependência da plataforma Pegada."
+   },
+   {
+    "id": "INFRA-09",
+    "categoria": "INFRA",
+    "titulo": "Deploy documentado",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "O README explica como rodar em desenvolvimento e em produção, incluindo configuração de variáveis e comandos."
+   },
+   {
+    "id": "PROC-01",
+    "categoria": "PROC",
+    "titulo": "Ordem canônica de build",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "v1/specs/Prompt.txt",
+    "regra": "Executar na ordem: ler especificação do produto, criar estrutura, implementar backend em camadas, implementar frontend, configurar Docker, escrever README e validar."
+   },
+   {
+    "id": "PROC-02",
+    "categoria": "PROC",
+    "titulo": "Testes de backend",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/TechSpecsConfig.md",
+    "regra": "Testes unitários das entidades e validações de campo no backend."
+   },
+   {
+    "id": "PROC-03",
+    "categoria": "PROC",
+    "titulo": "Frontend compila",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/Prompt.txt",
+    "regra": "O build do frontend passa (checagem de tipos + build) sem erro."
+   },
+   {
+    "id": "PROC-04",
+    "categoria": "PROC",
+    "titulo": "Validação final de entrega",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/specs/config/SecurityChecklist.md",
+    "regra": "Antes de considerar pronto: backend inicia, frontend compila, migrações rodam, compose sobe, nenhum segredo no bundle, rotas privadas exigem sessão, CORS de produção configurável e rate limit presente."
+   },
+   {
+    "id": "PROC-05",
+    "categoria": "PROC",
+    "titulo": "Nunca comitar segredo",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/AGENTS.md",
+    "regra": "Arquivos de ambiente reais e dados de runtime nunca entram no repositório; apenas templates."
+   },
+   {
+    "id": "PROC-06",
+    "categoria": "PROC",
+    "titulo": "Teste automatizado do padrão",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "execucao",
+    "fonte": "v1/frontend/scripts/check-*.mjs",
+    "regra": "O projeto gerado carrega seus próprios scripts de verificação (contratos de segurança e experiência) para checar o padrão no código."
+   },
+   {
+    "id": "PAC-01",
+    "categoria": "PAC",
+    "titulo": "Conteúdo do pacote",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/project-context-zip-generator",
+    "regra": "O pacote contém a especificação do produto, o prompt de build, o README e os documentos de padrão (técnico, segurança, login, docker, banco)."
+   },
+   {
+    "id": "PAC-02",
+    "categoria": "PAC",
+    "titulo": "Prompt por agente",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/specs/Prompt.txt",
+    "regra": "O prompt de build existe para o agente que o dono escolher (Claude, Codex, OpenCode), sem prender o projeto a um fornecedor."
+   },
+   {
+    "id": "PAC-03",
+    "categoria": "PAC",
+    "titulo": "Especificação sem metadado interno",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/project-context-zip-generator",
+    "regra": "A especificação entregue ao usuário não carrega metadado interno do gerador (perfil, caminho escolhido, identificadores internos)."
+   },
+   {
+    "id": "PAC-04",
+    "categoria": "PAC",
+    "titulo": "Pastas vazias preservadas",
+    "criticidade": "recomendada",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "v1/openspec/specs/project-context-zip-generator",
+    "regra": "Diretórios de runtime do pacote são preservados com arquivo de ignore, para o projeto nascer com a estrutura completa."
+   },
+   {
+    "id": "PAC-05",
+    "categoria": "PAC",
+    "titulo": "Caminho único de produção",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "decisão 12/09",
+    "regra": "Existe um único caminho de geração: SaaS completo de produção. Não há escolha de perfil MVP nem variação sem autenticação."
+   },
+   {
+    "id": "PAC-06",
+    "categoria": "PAC",
+    "titulo": "Projeto é do dono",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "manual",
+    "fonte": "decisão 12/09",
+    "regra": "O pacote roda fora da plataforma: código no repositório do dono, infraestrutura dele, provedor de IA dele. Nenhuma dependência obrigatória do Pegada."
+   },
+   {
+    "id": "UI-11",
+    "categoria": "UI",
+    "titulo": "Design sóbrio — sem \"AI slop\"",
+    "criticidade": "obrigatoria",
+    "condicao": "sempre",
+    "verificacao": "estatico",
+    "fonte": "user/feedback-publico-video-15-09",
+    "regra": "Interface sem os marcadores visuais de \"conteúdo de IA\": fundo de página com cor SÓLIDA (nenhum degradê de superfície), bordas e sombras NEUTRAS (sem tonalidade colorida, sem glow — o acento da marca entra como cor de ação, nunca como luz), e gradiente permitido somente quando FUNCIONAL (ex.: régua de progresso). Verificação automática: no HTML servido, nenhum `box-shadow` de luz colorida e nenhum gradiente no fundo da página; só gradientes funcionais sobram (smoke `scripts/smoke_contexto_ui.py` no Pegada, ou `grep -c gradient` + lista de exceções)."
+   }
+  ],
+  "destaques_video": [
+   "API-02",
+   "API-03",
+   "API-05",
+   "SEG-08",
+   "DADOS-01"
+  ]
+ },
+ "open_questions": [
+  "Como você imagina o visual das telas além da logo (cores, estilo, algo que devamos registrar)?"
+ ],
+ "infra": {
+  "backend": "FastAPI (Python) — rotas sob /api, /api/health público",
+  "frontend": "React + Vite — responsivo (celular e desktop obrigatórios)",
+  "banco": "PostgreSQL (migrations versionadas)",
+  "deploy": "Docker + docker-compose local (infra do próprio dono)",
+  "ia": "BYOK — provedor escolhido pelo dono (OpenAI/Anthropic/Google/OpenRouter/local)",
+  "principios": [
+   "sem lock-in: código roda fora do Pegada",
+   "código no Git do dono",
+   "sem serviço proprietário obrigatório",
+   "/api em todos os endpoints"
+  ]
+ },
+ "transparencia": {
+  "automatico": [
+   "auth",
+   "crud",
+   "search",
+   "upload",
+   "dashboard",
+   "jobs",
+   "notificacoes",
+   "rbac"
+  ],
+  "exige_decisao": [
+   "billing",
+   "workflow"
+  ],
+  "fora_escopo_automatico": [],
+  "nota_media_automacao": 4.2
+ },
+ "proximos_passos": [
+  "Decidir em conversa: Cobrança / planos, Workflow / máquina de estados",
+  "Obter credenciais das integrações obrigatórias: não se aplica: o sistema não terá pagamentos",
+  "Build: gerar o código com o agente escolhido (prompt_*.md do pacote)",
+  "Publicar: docker-compose na infra do dono (sem depender da plataforma)"
+ ]
+}

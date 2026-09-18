@@ -1,0 +1,52 @@
+# ===== Python / FastAPI =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+env/
+ENV/
+.idea/
+.vscode/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.log
+
+# ===== Node / React / Vite =====
+node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+
+# ===== Docker =====
+*.pid
+.docker/
+
+# ===== Dados de runtime =====
+# A pasta storage/ contém dados sensíveis do usuário (uploads).
+# Mantemos apenas a estrutura vazia no repositório.
+storage/*
+!storage/.gitkeep
+!storage/uploads/
+storage/uploads/*
+!storage/uploads/.gitkeep
+
+# ===== macOS =====
+.DS_Store
+
+# ===== Banco =====
+*.sqlite3
+*.db
